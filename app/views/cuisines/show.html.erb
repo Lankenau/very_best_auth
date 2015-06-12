@@ -19,6 +19,10 @@
                 <i class="fa fa-chevron-left"></i>
               </a>
 
+              <a href="/cuisines" class="btn btn-primary">
+                <i class="fa fa-chevron-left"></i>
+              </a>
+
               <a href="/cuisines/<%= @cuisine.id %>/edit" class="btn btn-warning">
                 <i class="fa fa-edit"></i>
               </a>
@@ -30,8 +34,55 @@
           </div>
         </div>
       </div>
+        <div class="list-group">
+          <a class="list-group-item list-group-item-success">Dishes</a>
+          <% @cuisine.dishes.each do |dish| %>
+            <a class="list-group-item" href="/dishes/<%= dish.id %>"><%= dish.name %> </a>
+          <% end %>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Add <%= @cuisine.name %> Dish</h3>
+      </div>
+      <div class="panel-body">
+        <form action="/create_dish" method="post" class="form-horizontal">
+          <!-- Hidden input for authenticity token to protect from forgery -->
+          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+          <!-- Label and input for name -->
+          <div class="form-group">
+            <label for="name" class="col-sm-2 control-label">
+              Name
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @cuisine.dishes.name %>">
+            </div>
+          </div>
+
+          <!-- Label and input for cuisine_id -->
+            <input type="hidden" name="cuisine_id" value="<%= @cuisine.id %>">
+
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button class="btn btn-success">
+                Create Dish
+              </button>
+              or
+              <a href="/dishes">Cancel</a>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </div>
 
 <!-- End responsive panel example -->
+
+

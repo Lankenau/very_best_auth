@@ -9,6 +9,7 @@ class CuisinesController < ApplicationController
 
   def new
     @cuisine = Cuisine.new
+    @dish = Dish.new
   end
 
   def create
@@ -27,7 +28,7 @@ class CuisinesController < ApplicationController
   end
 
   def update
-    @cuisine = Cuisine.find(params[:id])
+    @cuisines = Cuisine.find(params[:id])
 
     @cuisine.name = params[:name]
 
